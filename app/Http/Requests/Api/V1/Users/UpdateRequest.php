@@ -18,12 +18,12 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => [
-                'nullable',
+                'required',
                 'string',
                 'max:255',
             ],
             'email' => [
-                'nullable',
+                'required',
                 'string',
                 'email',
                 'max:255',
