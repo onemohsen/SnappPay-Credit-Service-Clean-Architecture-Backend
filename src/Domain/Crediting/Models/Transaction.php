@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace Domain\Crediting\Models;
 
+use App\Domain\Crediting\Models\Builders\TransactionBuilder;
+use Domain\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,5 +39,10 @@ class Transaction extends Model
     public function transactionable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function newElequentBuilder($query): TransactionBuilder
+    {
+        return new TransactionBuilder($query);
     }
 }

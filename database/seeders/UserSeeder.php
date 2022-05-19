@@ -10,13 +10,13 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        \Domain\Shared\Models\User::factory(10)->create();
 
-        $products = \App\Models\Product::all();
+        $products = \Domain\Crediting\Models\Product::all();
 
-        $creditPackages = \App\Models\CreditPackage::all();
+        $creditPackages = \Domain\Crediting\Models\CreditPackage::all();
 
-        $users = \App\Models\User::all();
+        $users = \Domain\Shared\Models\User::all();
 
 
         $users->each(function ($user) use ($creditPackages, $products) {
