@@ -37,3 +37,11 @@ Route::prefix('products')->as('products.')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\Products\IndexController::class)->name('index'); // route('api.v1.products.index')
     Route::get('{product:id}', App\Http\Controllers\Api\V1\Products\ShowController::class)->name('show'); // route('api.v1.products.show')
 });
+
+/*
+| Transactions Endpoints
+*/
+Route::prefix('transactions')->as('transactions.')->group(function () {
+    Route::get('/', App\Http\Controllers\Api\V1\Transactions\IndexController::class)->name('index'); // route('api.v1.transactions.index')
+    Route::get('{transaction:id}', App\Http\Controllers\Api\V1\Transactions\ShowController::class)->name('show'); // route('api.v1.transactions.show')
+});
