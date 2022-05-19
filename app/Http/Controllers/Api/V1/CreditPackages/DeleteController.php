@@ -5,22 +5,23 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1\CreditPackages;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CreditPackageResource;
+use Domain\Crediting\Actions\CreditPackages\DeleteCreditPackage;
 use Domain\Crediting\Models\CreditPackage;
 use Illuminate\Http\Response;
 use Infrastructure\Http\Responses\ApiResponse;
 
-class ShowController extends Controller
+class DeleteController extends Controller
 {
     public function __invoke(CreditPackage $creditPackage)
     {
+        DeleteCreditPackage::handle($creditPackage);
+
         return ApiResponse::handle(
             data: [
-                'message' => __('messages.crud.read.success', ['label' => __('models.creditPackage')]),
-                'data' => CreditPackageResource::make($creditPackage),
-                'status' => Response::HTTP_OK,
+                'message' => __('messages.crud.delete.success', ['label' => __('models.creditPackage')]),
+                'status' => Response::HTTP_ACCEPTED,
             ],
-            status: Response::HTTP_OK,
+            status: Response::HTTP_ACCEPTED,
         );
     }
 }

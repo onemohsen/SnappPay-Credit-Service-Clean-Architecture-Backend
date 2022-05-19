@@ -31,6 +31,9 @@ Route::prefix('users')->as('users.')->group(function () {
 Route::prefix('credit-packages')->as('credit-packages.')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\CreditPackages\IndexController::class)->name('index'); // route('api.v1.credit-packages.index')
     Route::get('{creditPackage:id}', App\Http\Controllers\Api\V1\CreditPackages\ShowController::class)->name('show'); // route('api.v1.credit-packages.show')
+    Route::post('/', App\Http\Controllers\Api\V1\CreditPackages\StoreController::class)->name('store'); // route('api.v1.credit-packages.store')
+    Route::patch('{creditPackage:id}', App\Http\Controllers\Api\V1\CreditPackages\UpdateController::class)->name('update'); // route('api.v1.credit-packages.update')
+    Route::delete('{creditPackage:id}', App\Http\Controllers\Api\V1\CreditPackages\DeleteController::class)->name('delete'); // route('api.v1.credit-packages.delete')
 });
 
 /*
