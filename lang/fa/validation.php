@@ -225,6 +225,7 @@ return [
         'meta.description' => 'توضیحات متا',
         'meta.keywords' => 'کلمات کلیدی متا',
         'price' => 'قیمت',
+        'payment_deadline_by_days' => 'مدت زمان تسویه به روز',
     ],
 
     'values' => [
