@@ -21,7 +21,8 @@ Route::prefix('users')->as('users.')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\Users\IndexController::class)->name('index'); // route('api.v1.users.index')
     Route::get('{user:id}', App\Http\Controllers\Api\V1\Users\ShowController::class)->name('show'); // route('api.v1.users.index')
     Route::post('/', App\Http\Controllers\Api\V1\Users\StoreController::class)->name('store'); // route('api.v1.users.store')
-    Route::post('/', App\Http\Controllers\Api\V1\Users\StoreController::class)->name('store'); // route('api.v1.users.store')
+    Route::patch('{user:id}', App\Http\Controllers\Api\V1\Users\UpdateController::class)->name('update'); // route('api.v1.users.update')
+    Route::delete('{user:id}', App\Http\Controllers\Api\V1\Users\DeleteController::class)->name('delete'); // route('api.v1.users.delete')
 });
 
 /*

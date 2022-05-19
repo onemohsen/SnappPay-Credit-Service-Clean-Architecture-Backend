@@ -13,7 +13,7 @@ class UserFactory
         return new UserValueObject(
             name: $attributes['name'],
             email: $attributes['email'],
-            password: $attributes['password'],
+            password: $attributes['password'] ?? null,
         );
     }
 }

@@ -9,16 +9,16 @@ class UserValueObject
     public function __construct(
         public string $name,
         public string $email,
-        public string $password,
+        public string|null $password = null,
     ) {
     }
 
     public function toArray()
     {
         return [
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => $this->password,
+            ...$this->name ? ['name' => $this->name] : [],
+            ...$this->email ? ['email' => $this->email] : [],
+            ...$this->password ? ['password' => $this->password] : [],
         ];
     }
 }
