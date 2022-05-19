@@ -39,6 +39,9 @@ Route::prefix('credit-packages')->as('credit-packages.')->group(function () {
 Route::prefix('products')->as('products.')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\Products\IndexController::class)->name('index'); // route('api.v1.products.index')
     Route::get('{product:id}', App\Http\Controllers\Api\V1\Products\ShowController::class)->name('show'); // route('api.v1.products.show')
+    Route::post('/', App\Http\Controllers\Api\V1\Products\StoreController::class)->name('store'); // route('api.v1.products.store')
+    Route::patch('{product:id}', App\Http\Controllers\Api\V1\Products\UpdateController::class)->name('update'); // route('api.v1.products.update')
+    Route::delete('{product:id}', App\Http\Controllers\Api\V1\Products\DeleteController::class)->name('delete'); // route('api.v1.products.delete')
 });
 
 /*

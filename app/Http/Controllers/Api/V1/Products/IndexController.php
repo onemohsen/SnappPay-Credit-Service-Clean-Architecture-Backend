@@ -1,24 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use Domain\Crediting\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class IndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke(Request $request)
     {
         $products = Product::all();
 
-        return ProductResource::collection($products);
+        return response()->json(
+            ProductResource::collection($products),
+            Response::HTTP_OK
+        );
     }
 }
