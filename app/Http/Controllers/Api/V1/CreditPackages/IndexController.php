@@ -1,25 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\CreditPackages;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CreditPackageResource;
 use Domain\Crediting\Models\CreditPackage;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class IndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
         $creditPackages = CreditPackage::all();
 
-
-        return CreditPackageResource::collection($creditPackages);
+        return ApiResponse::handle(
+            data: [
+                'message' => __('messages.crud.read.success', ['label' => __('models.creditPackages')]),
+                'data' => CreditPackageResource::collection($creditPackages),
+                'status' => Response::HTTP_OK,
+            ],
+            status: Response::HTTP_OK,
+        );
     }
 }
