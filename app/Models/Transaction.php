@@ -14,7 +14,12 @@ class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $filleable = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected  $filleable = [
         'old_user_wallet_balance',
         'price',
         'new_user_wallet_balance',
@@ -22,7 +27,7 @@ class Transaction extends Model
         'user_id',
     ];
 
-    protected array $casts = ['is_increment' => 'boolean'];
+    protected  $casts = ['is_increment' => 'boolean'];
 
     public function user(): BelongsTo
     {

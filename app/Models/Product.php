@@ -13,7 +13,12 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $filleable = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected  $filleable = [
         'name',
         'price',
     ];

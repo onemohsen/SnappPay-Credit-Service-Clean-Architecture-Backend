@@ -13,7 +13,12 @@ class CreditPackage extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected array $fillable = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected  $fillable = [
         'name',
         'price',
         'payment_deadline_by_days',
