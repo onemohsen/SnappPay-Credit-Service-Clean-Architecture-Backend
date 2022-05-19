@@ -224,6 +224,7 @@ return [
         'meta.title' => 'عنوان متا',
         'meta.description' => 'توضیحات متا',
         'meta.keywords' => 'کلمات کلیدی متا',
+        'price' => 'قیمت',
     ],
 
     'values' => [
