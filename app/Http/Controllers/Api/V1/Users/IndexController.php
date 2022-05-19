@@ -9,20 +9,21 @@ use App\Http\Resources\UserResource;
 use Domain\Shared\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class IndexController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function __invoke(Request $request)
     {
         $users =  UserResource::collection(User::all());
 
-
-        return response()->json($users, Response::HTTP_OK);
+        return ApiResponse::handle(
+            data: [
+                'message' => 'Users retrieved successfully',
+                'data' => $users,
+                'status' => Response::HTTP_OK,
+            ],
+            status: Response::HTTP_OK,
+        );
     }
 }

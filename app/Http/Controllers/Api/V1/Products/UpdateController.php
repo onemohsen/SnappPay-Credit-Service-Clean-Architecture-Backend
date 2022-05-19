@@ -11,6 +11,7 @@ use Domain\Crediting\Actions\Products\UpdateProduct;
 use Domain\Crediting\Factories\ProductFactory;
 use Domain\Crediting\Models\Product;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class UpdateController extends Controller
 {
@@ -19,12 +20,13 @@ class UpdateController extends Controller
         $productObjectValue = ProductFactory::create($request->validated());
         $product = UpdateProduct::handle($product, $productObjectValue);
 
-        return response(
-            [
+        return ApiResponse::handle(
+            data: [
                 'message' => 'Product updated successfully',
-                'data' => ProductResource::make($product)
+                'data' => ProductResource::make($product),
+                'status' => Response::HTTP_ACCEPTED,
             ],
-            Response::HTTP_ACCEPTED
+            status: Response::HTTP_ACCEPTED,
         );
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Resources\ProductResource;
 use Domain\Crediting\Actions\Products\CreateProduct;
 use Domain\Crediting\Factories\ProductFactory;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class StoreController extends Controller
 {
@@ -18,12 +19,13 @@ class StoreController extends Controller
         $productObjectValue = ProductFactory::create($request->validated());
         $product = CreateProduct::handle($productObjectValue);
 
-        return response(
-            [
-                'message' => 'Product Stored successfully',
-                'data' => ProductResource::make($product)
+        return ApiResponse::handle(
+            data: [
+                'message' => 'Product created successfully',
+                'data' => ProductResource::make($product),
+                'status' => Response::HTTP_ACCEPTED,
             ],
-            Response::HTTP_ACCEPTED
+            status: Response::HTTP_ACCEPTED,
         );
     }
 }

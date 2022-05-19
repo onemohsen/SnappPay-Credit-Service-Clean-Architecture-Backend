@@ -9,14 +9,21 @@ use App\Http\Resources\ProductResource;
 use Domain\Crediting\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class ShowController extends Controller
 {
     public function __invoke(Request $request, Product $product)
     {
-        return response()->json(
-            ProductResource::make($product),
-            Response::HTTP_OK
+        $product = ProductResource::make($product);
+
+        return ApiResponse::handle(
+            data: [
+                'message' => 'Product retrieved successfully',
+                'data' => $product,
+                'status' => Response::HTTP_OK,
+            ],
+            status: Response::HTTP_OK,
         );
     }
 }

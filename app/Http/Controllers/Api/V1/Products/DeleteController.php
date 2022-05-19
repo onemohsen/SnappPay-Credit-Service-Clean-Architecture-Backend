@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Domain\Crediting\Actions\Products\DeleteProduct;
 use Domain\Crediting\Models\Product;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class DeleteController extends Controller
 {
@@ -15,9 +16,12 @@ class DeleteController extends Controller
     {
         DeleteProduct::handle($product);
 
-        return response(
-            ['message' => 'Product deleted successfully'],
-            Response::HTTP_ACCEPTED
+        return ApiResponse::handle(
+            data: [
+                'message' => 'Product deleted successfully',
+                'status' => Response::HTTP_ACCEPTED,
+            ],
+            status: Response::HTTP_ACCEPTED,
         );
     }
 }

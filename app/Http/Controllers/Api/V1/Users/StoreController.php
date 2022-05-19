@@ -11,6 +11,7 @@ use App\Http\Requests\Api\V1\Users\StoreRequest;
 use App\Http\Resources\UserResource;
 use Domain\Shared\Factories\UserFactory;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class StoreController extends Controller
 {
@@ -20,6 +21,13 @@ class StoreController extends Controller
             UserFactory::create($request->validated())
         );
 
-        return response()->json(UserResource::make($user), Response::HTTP_CREATED);
+        return ApiResponse::handle(
+            data: [
+                'message' => 'User created successfully',
+                'data' => UserResource::make($user),
+                'status' => Response::HTTP_CREATED,
+            ],
+            status: Response::HTTP_CREATED,
+        );
     }
 }

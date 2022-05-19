@@ -9,6 +9,7 @@ use Domain\Shared\Actions\Users\UpdateUser;
 use Domain\Shared\Factories\UserFactory;
 use Domain\Shared\Models\User;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class UpdateController extends Controller
 {
@@ -16,6 +17,14 @@ class UpdateController extends Controller
     {
         $userValueObject = UserFactory::create($request->validated());
         $user = UpdateUser::handle($user, $userValueObject);
-        return response()->json(new UserResource($user), Response::HTTP_ACCEPTED);
+
+        return ApiResponse::handle(
+            data: [
+                'message' => 'User updated successfully',
+                'data' => UserResource::make($user),
+                'status' => Response::HTTP_ACCEPTED,
+            ],
+            status: Response::HTTP_ACCEPTED,
+        );
     }
 }

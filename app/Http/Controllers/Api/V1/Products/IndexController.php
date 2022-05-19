@@ -9,6 +9,7 @@ use App\Http\Resources\ProductResource;
 use Domain\Crediting\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class IndexController extends Controller
 {
@@ -16,9 +17,13 @@ class IndexController extends Controller
     {
         $products = Product::all();
 
-        return response()->json(
-            ProductResource::collection($products),
-            Response::HTTP_OK
+        return ApiResponse::handle(
+            data: [
+                'message' => 'Products retrieved successfully',
+                'data' => ProductResource::collection($products),
+                'status' => Response::HTTP_OK,
+            ],
+            status: Response::HTTP_OK,
         );
     }
 }
