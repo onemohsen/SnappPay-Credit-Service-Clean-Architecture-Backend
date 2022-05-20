@@ -8,7 +8,7 @@ class ProductValueObject
 {
     public function __construct(
         public string $name,
-        public string $price,
+        public int $price,
     ) {
     }
 

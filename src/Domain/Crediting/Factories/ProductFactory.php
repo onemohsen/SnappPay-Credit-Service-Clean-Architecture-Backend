@@ -12,7 +12,7 @@ class ProductFactory
     {
         return new ProductValueObject(
             name: $attributes['name'],
-            price: $attributes['price'],
+            price: (int) $attributes['price'],
         );
     }
 }
