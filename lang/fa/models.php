@@ -8,10 +8,14 @@
 
 
 return [
+    "role" => "نقش",
+    "roles" => "نقش ها",
     "user" => "کاربر",
     "users" => "کاربران",
     "product" => "محصول",
     "products" => "محصولات",
+    "permission" => "دسترسی",
+    "permissions" => "دسترسی ها",
     "transaction" => "تراکنش",
     "transactions" => "تراکنشات",
     "creditPackage" => "بسته اعتباری",

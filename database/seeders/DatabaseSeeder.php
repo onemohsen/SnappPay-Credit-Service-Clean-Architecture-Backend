@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         if (app()->environment('local')) {
             $this->call([
+                RolePermissonSeeder::class,
                 CreditPackegeSeeder::class,
                 ProductSeeder::class,
                 UserSeeder::class
@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
         }
 
         if (app()->environment('production')) {
-            $this->call([]);
+            $this->call([
+                RolePermissonSeeder::class,
+            ]);
         }
     }
 }
