@@ -13,17 +13,20 @@ class DatabaseSeeder extends Seeder
     {
         if (app()->environment('local')) {
             $this->call([
-                RolePermissonSeeder::class,
                 CreditPackegeSeeder::class,
                 ProductSeeder::class,
-                UserSeeder::class
             ]);
         }
 
         if (app()->environment('production')) {
-            $this->call([
-                RolePermissonSeeder::class,
-            ]);
+            $this->call([]);
         }
+
+        $this->call([
+            RolePermissonSeeder::class,
+            UserSeeder::class,
+
+            CommandSeeder::class,
+        ]);
     }
 }
