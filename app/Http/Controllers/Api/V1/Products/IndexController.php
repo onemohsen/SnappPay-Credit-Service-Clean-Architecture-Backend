@@ -7,15 +7,17 @@ namespace App\Http\Controllers\Api\V1\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use Domain\Crediting\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Infrastructure\Http\Responses\ApiResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $products = Product::all();
+        $products = QueryBuilder::for(Product::class)
+            ->defaultSort('-id')
+            ->paginate();
 
         return ApiResponse::handle(
             data: ProductResource::collection($products),
