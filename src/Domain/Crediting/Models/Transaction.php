@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Crediting\Models;
 
-use App\Domain\Crediting\Models\Builders\TransactionBuilder;
+use Domain\Crediting\Models\Builders\TransactionBuilder;
 use Domain\Shared\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,8 +41,9 @@ class Transaction extends Model
         return $this->morphTo();
     }
 
-    public function newElequentBuilder($query): TransactionBuilder
+    /* ovverride query builder */
+    public function newEloquentBuilder($query): TransactionBuilder
     {
-        return new TransactionBuilder($query);
+        return new TransactionBuilder(query: $query);
     }
 }
