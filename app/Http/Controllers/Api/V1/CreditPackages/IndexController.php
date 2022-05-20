@@ -9,19 +9,19 @@ use App\Http\Resources\CreditPackageResource;
 use Domain\Crediting\Models\CreditPackage;
 use Illuminate\Http\Response;
 use Infrastructure\Http\Responses\ApiResponse;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        $creditPackages = CreditPackage::all();
+        $creditPackages = QueryBuilder::for(CreditPackage::class)
+            ->defaultSort('-id')
+            ->paginate();
 
         return ApiResponse::handle(
-            data: [
-                'message' => __('messages.crud.read.success', ['label' => __('models.creditPackages')]),
-                'data' => CreditPackageResource::collection($creditPackages),
-                'status' => Response::HTTP_OK,
-            ],
+            data: CreditPackageResource::collection($creditPackages),
+            message: __('messages.crud.read.success', ['label' => __('models.creditPackages')]),
             status: Response::HTTP_OK,
         );
     }
