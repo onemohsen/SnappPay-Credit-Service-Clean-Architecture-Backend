@@ -5,21 +5,22 @@ namespace App\Http\Controllers\Api\V1\Transactions;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TransactionResource;
 use Domain\Crediting\Models\Transaction;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Infrastructure\Http\Responses\ApiResponse;
 
 class ShowController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Domain\Crediting\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request, Transaction $transaction)
+    public function __invoke(Transaction $transaction)
     {
+        $transaction->load([
+            'user',
+            'transactionable',
+        ]);
 
-
-        return TransactionResource::make($transaction);
+        return ApiResponse::handle(
+            data: TransactionResource::make($transaction),
+            message: __('messages.crud.read.success', ['label' => __('models.transaction')]),
+            status: Response::HTTP_OK,
+        );
     }
 }
