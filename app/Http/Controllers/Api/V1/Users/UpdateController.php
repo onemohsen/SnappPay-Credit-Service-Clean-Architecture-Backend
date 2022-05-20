@@ -19,11 +19,8 @@ class UpdateController extends Controller
         $user = UpdateUser::handle($user, $userValueObject);
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'User updated successfully',
-                'data' => UserResource::make($user),
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            data: UserResource::make($user),
+            message: __('messages.crud.update.success', ['label' => __('models.user')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

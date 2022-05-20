@@ -22,11 +22,8 @@ class StoreController extends Controller
         );
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'User created successfully',
-                'data' => UserResource::make($user),
-                'status' => Response::HTTP_CREATED,
-            ],
+            data: UserResource::make($user),
+            message: __('messages.crud.create.success', ['label' => __('models.user')]),
             status: Response::HTTP_CREATED,
         );
     }

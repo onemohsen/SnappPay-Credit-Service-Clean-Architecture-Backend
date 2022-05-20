@@ -21,11 +21,8 @@ class UpdateController extends Controller
         $creditPackage = UpdateCreditPackage::handle($creditPackage, $creditPackageValueObject);
 
         return ApiResponse::handle(
-            data: [
-                'message' => __('messages.crud.update.success', ['label' => __('models.creditPackage')]),
-                'data' => CreditPackageResource::make($creditPackage),
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            data: CreditPackageResource::make($creditPackage),
+            message: __('messages.crud.update.success', ['label' => __('models.creditPackage')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

@@ -17,10 +17,7 @@ class DeleteController extends Controller
         DeleteCreditPackage::handle($creditPackage);
 
         return ApiResponse::handle(
-            data: [
-                'message' => __('messages.crud.delete.success', ['label' => __('models.creditPackage')]),
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            message: __('messages.crud.delete.success', ['label' => __('models.creditPackage')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

@@ -15,10 +15,7 @@ class DeleteController extends Controller
         DeleteUser::handle($user);
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'User deleted successfully',
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            message: __('messages.crud.delete.success', ['label' => __('models.user')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

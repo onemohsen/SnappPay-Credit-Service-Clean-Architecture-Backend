@@ -17,10 +17,7 @@ class DeleteController extends Controller
         DeleteProduct::handle($product);
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'Product deleted successfully',
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            message: __('messages.crud.delete.success', ['label' => __('models.product')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

@@ -15,11 +15,8 @@ class ShowController extends Controller
     public function __invoke(CreditPackage $creditPackage)
     {
         return ApiResponse::handle(
-            data: [
-                'message' => __('messages.crud.read.success', ['label' => __('models.creditPackage')]),
-                'data' => CreditPackageResource::make($creditPackage),
-                'status' => Response::HTTP_OK,
-            ],
+            data: CreditPackageResource::make($creditPackage),
+            message: __('messages.crud.read.success', ['label' => __('models.creditPackage')]),
             status: Response::HTTP_OK,
         );
     }

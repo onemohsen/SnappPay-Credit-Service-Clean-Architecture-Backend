@@ -20,11 +20,8 @@ class StoreController extends Controller
         $product = CreateProduct::handle($productObjectValue);
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'Product created successfully',
-                'data' => ProductResource::make($product),
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            data: ProductResource::make($product),
+            message: __('messages.crud.create.success', ['label' => __('models.product')]),
             status: Response::HTTP_ACCEPTED,
         );
     }

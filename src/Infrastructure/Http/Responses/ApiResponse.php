@@ -16,7 +16,7 @@ class ApiResponse
     ];
 
 
-    public static function  handle($data, string $message = '', int $status = Response::HTTP_OK, array $headers = [])
+    public static function  handle($data = null, string $message = '', int $status = Response::HTTP_OK, array $headers = [])
     {
         /* condition for get paginate meta  */
         if ($data instanceof JsonResource) {
@@ -29,7 +29,7 @@ class ApiResponse
                 ->getData(); // get paginat meta
         } else {
             $data = [
-                'data' => $data,
+                ...$data ? ['data' => $data] : [],
                 'status' => $status,
                 ...$message ? ['message' => $message] : []
             ];

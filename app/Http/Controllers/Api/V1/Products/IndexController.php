@@ -18,11 +18,8 @@ class IndexController extends Controller
         $products = Product::all();
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'Products retrieved successfully',
-                'data' => ProductResource::collection($products),
-                'status' => Response::HTTP_OK,
-            ],
+            data: ProductResource::collection($products),
+            message: __('messages.crud.read.success', ['label' => __('models.products')]),
             status: Response::HTTP_OK,
         );
     }

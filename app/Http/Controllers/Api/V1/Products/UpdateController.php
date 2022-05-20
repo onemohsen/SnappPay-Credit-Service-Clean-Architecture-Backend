@@ -21,11 +21,8 @@ class UpdateController extends Controller
         $product = UpdateProduct::handle($product, $productObjectValue);
 
         return ApiResponse::handle(
-            data: [
-                'message' => 'Product updated successfully',
-                'data' => ProductResource::make($product),
-                'status' => Response::HTTP_ACCEPTED,
-            ],
+            data: ProductResource::make($product),
+            message: __('messages.crud.update.success', ['label' => __('models.product')]),
             status: Response::HTTP_ACCEPTED,
         );
     }
