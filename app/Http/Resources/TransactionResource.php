@@ -24,6 +24,7 @@ class TransactionResource extends JsonResource
             'price' => $this->price,
             'new_user_wallet_balance' => $this->new_user_wallet_balance,
             'is_increment' => $this->is_increment,
+            'type' => $this->transactionable_type === Product::class ? 'product' : 'creditPackage',
             'user' => new UserResource($this->whenLoaded('user')),
             'transactionable' => $this->when($this->relationLoaded('transactionable'), function () {
                 if ($this->transactionable instanceof Product) {
