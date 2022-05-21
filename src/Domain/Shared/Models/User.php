@@ -8,6 +8,7 @@ use Domain\Crediting\Models\CreditPackage;
 use Domain\Crediting\Models\Product;
 use Domain\Crediting\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -68,9 +69,21 @@ class User extends Authenticatable
         return $this->hasManyThrough(Product::class, Transaction::class);
     }
 
-    public function creditPackages(): HasManyThrough
+    public function creditPackages(): BelongsToMany
     {
-        return $this->hasManyThrough(CreditPackage::class, Transaction::class);
+        return $this->belongsToMany(CreditPackage::class)->withPivot([
+            'payment_deadline_at',
+            'is_paid',
+            'paid_at',
+        ]);
+    }
+
+    public static function hasUnPaidCreditPackages(int|string $userId)
+    {
+        return User::query()
+            ->where('id', $userId)
+            ->whereHas('creditPackages', fn ($q) => $q->where('is_paid', false))
+            ->count();
     }
 
     /** @return SomeFancyFactory */

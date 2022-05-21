@@ -20,8 +20,13 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         \Domain\Crediting\Events\BuyProductEvent::class => [
-            \Domain\Crediting\Listeners\CreateTransactionOnBuyProductListener::class,
+            \Domain\Crediting\Listeners\CreateTransactionListener::class,
             \Domain\Crediting\Listeners\UpdateWalletBalanceUserListener::class,
+        ],
+        \Domain\Crediting\Events\CreditPackageActivationEvent::class => [
+            \Domain\Crediting\Listeners\CreateTransactionListener::class,
+            \Domain\Crediting\Listeners\UpdateWalletBalanceUserListener::class,
+            \Domain\Crediting\Listeners\AttachCreditPackageToUserListener::class,
         ],
     ];
 
