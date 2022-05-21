@@ -9,7 +9,7 @@ use Domain\Crediting\Factories\TransactionFactory;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CreateTransactionOnBuyProductListener
+class CreateTransactionListener
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class CreateTransactionOnBuyProductListener
 
     public function handle(object $event): void
     {
-        $transactionObjectValue = TransactionFactory::create($event->user, $event->product);
+        $transactionObjectValue = TransactionFactory::create($event->user, $event->transactionable);
         CreateTransaction::handle($transactionObjectValue);
     }
 }
