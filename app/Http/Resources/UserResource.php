@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'wallet_balance' => $this->wallet_balance,
+            'creditPackages' => CreditPackageResource::collection($this->whenLoaded('creditPackages')),
             'links' => [
                 'self' => route('api.v1.users.show', $this->id),
                 'parent' => route('api.v1.users.index'),
