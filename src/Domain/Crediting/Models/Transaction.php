@@ -27,6 +27,8 @@ class Transaction extends Model
         'new_user_wallet_balance',
         'is_increment',
         'user_id',
+        'transactionable_id',
+        'transactionable_type',
     ];
 
     protected  $casts = ['is_increment' => 'boolean'];

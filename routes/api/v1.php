@@ -53,4 +53,6 @@ Route::prefix('products')->as('products.')->group(function () {
 Route::prefix('transactions')->as('transactions.')->group(function () {
     Route::get('/', App\Http\Controllers\Api\V1\Transactions\IndexController::class)->name('index'); // route('api.v1.transactions.index')
     Route::get('{transaction:id}', App\Http\Controllers\Api\V1\Transactions\ShowController::class)->name('show'); // route('api.v1.transactions.show')
+    Route::post('users/{user}/products/{product}', App\Http\Controllers\Api\V1\Transactions\BuyProductController::class)->name('buy-product'); // route('api.v1.transactions.buy-product')
 });
+1

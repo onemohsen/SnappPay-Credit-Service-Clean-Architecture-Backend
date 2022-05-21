@@ -226,6 +226,7 @@ return [
         'meta.keywords' => 'کلمات کلیدی متا',
         'price' => 'قیمت',
         'payment_deadline_by_days' => 'مدت زمان تسویه به روز',
+        "user.wallet_balance" => "موجودی کیف پول",
     ],
 
     'values' => [
