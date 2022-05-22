@@ -33,6 +33,7 @@ class RolePermissonSeeder extends Seeder
             ['name' => 'permission', 'label' => __('models.permission')],
             ['name' => 'product', 'label' => __('models.product')],
             ['name' => 'credit-package', 'label' => __('models.creditPackage')],
+            ['name' => 'transaction', 'label' => __('models.transaction')],
         ]);
 
         $roles->each(function ($role) use ($permissions) {
