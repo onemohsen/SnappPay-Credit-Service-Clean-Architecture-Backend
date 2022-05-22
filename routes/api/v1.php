@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 Route::prefix('users')->as('users.')->group(function () {
     Route::get('/current', App\Http\Controllers\Api\V1\Users\CurrentController::class)->name('current'); // route('api.v1.users.current')
+    Route::post('/logout', App\Http\Controllers\Api\V1\Users\LogoutController::class)->name('logout'); // route('api.v1.users.logout')
     Route::get('/', App\Http\Controllers\Api\V1\Users\IndexController::class)->name('index'); // route('api.v1.users.index')
     Route::get('{user:id}', App\Http\Controllers\Api\V1\Users\ShowController::class)->name('show'); // route('api.v1.users.index')
     Route::post('/', App\Http\Controllers\Api\V1\Users\StoreController::class)->name('store'); // route('api.v1.users.store')
