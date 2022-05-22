@@ -15,13 +15,21 @@ Install project with composer
 
 #### Environment Variables
 
-To run this project, you will need to add the following environment variables to your frontend .env file.
+To run this project, you will need to add the following environment variables to .env file.
 authorization by Laravel Passport package.
 
 ```bash
-  grant_type:password
-  client_id:2
-  client_secret:L8erqTADUWRjv8TsAVWjlkSn2abyIekuK6mcgJV2
+  cp .env.example .env
+```
+
+Finally add the settings below to end of file :
+
+note: after the command php artisan migrate --seed run this value settings show you in console
+
+```bash
+    SNAPPPAY_GRANT_TYPE=password
+    SNAPPPAY_CLIENT_ID=2
+    SNAPPPAY_CLIENT_SECRET=L8erqTADUWRjv8TsAVWjlkSn2abyIekuK6mcgJV2
 ```
 
 #### Authentication

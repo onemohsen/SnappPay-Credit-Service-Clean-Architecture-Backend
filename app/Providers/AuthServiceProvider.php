@@ -27,7 +27,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         if (!$this->app->routesAreCached()) {
-            Passport::routes(null, ['prefix' => 'api/v1/oauth', 'as' => 'api.v1.']); // register routes for Passport API route('api.v1.passport.*')
+            Passport::routes(function ($route) {
+                $route->forAccessTokens();
+            }, ['prefix' => 'api/v1/oauth', 'as' => 'api.v1.']); // register routes for Passport API route('api.v1.passport.*')
         }
 
         /* Passport expire token */

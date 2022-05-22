@@ -11,7 +11,7 @@ class UserFactory
     public static function create(array $attributes): UserValueObject
     {
         return new UserValueObject(
-            name: $attributes['name'],
+            name: $attributes['name'] ?? '',
             email: $attributes['email'],
             password: $attributes['password'] ?? null,
         );
