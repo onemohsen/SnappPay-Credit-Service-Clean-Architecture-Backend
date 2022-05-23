@@ -12,8 +12,6 @@ class DeleteController extends Controller
 {
     public function __invoke(User $user)
     {
-        $this->authorize('delete user');
-
         DeleteUser::handle($user);
 
         return ApiResponse::handle(

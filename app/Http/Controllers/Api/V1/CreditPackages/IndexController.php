@@ -15,8 +15,6 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $this->authorize('show credit-package');
-
         $creditPackages = QueryBuilder::for(CreditPackage::class)
             ->defaultSort('-id')
             ->paginate();

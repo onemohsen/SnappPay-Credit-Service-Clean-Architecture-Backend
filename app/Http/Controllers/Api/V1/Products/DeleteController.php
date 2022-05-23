@@ -14,8 +14,6 @@ class DeleteController extends Controller
 {
     public function __invoke(Product $product)
     {
-        $this->authorize('delete product');
-
         DeleteProduct::handle($product);
 
         return ApiResponse::handle(

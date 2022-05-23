@@ -15,8 +15,6 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request, User $user)
     {
-        $this->authorize('edit user');
-
         $userValueObject = UserFactory::create($request->validated());
         $user = UpdateUser::handle($user, $userValueObject);
 

@@ -17,8 +17,6 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
-        $this->authorize('create user');
-
         $user = CreateUser::handle(
             UserFactory::create($request->validated())
         );

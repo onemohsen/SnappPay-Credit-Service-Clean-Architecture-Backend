@@ -12,8 +12,6 @@ class ShowController extends Controller
 {
     public function __invoke(Transaction $transaction)
     {
-        $this->authorize('show transaction');
-
         $transaction->load([
             'user',
             'transactionable',

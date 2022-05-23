@@ -16,8 +16,6 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
-        $this->authorize('create credit-package');
-
         $creditPackageValueObject = CreditPackageFactory::create($request->validated());
         $creditPackage = CreateCreditPackage::handle($creditPackageValueObject);
 

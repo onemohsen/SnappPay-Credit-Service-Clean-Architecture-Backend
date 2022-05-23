@@ -17,8 +17,6 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request, Product $product)
     {
-        $this->authorize('edit product');
-
         $productObjectValue = ProductFactory::create($request->validated());
         $product = UpdateProduct::handle($product, $productObjectValue);
 
