@@ -16,6 +16,8 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
+        $this->authorize('create product');
+
         $productObjectValue = ProductFactory::create($request->validated());
         $product = CreateProduct::handle($productObjectValue);
 

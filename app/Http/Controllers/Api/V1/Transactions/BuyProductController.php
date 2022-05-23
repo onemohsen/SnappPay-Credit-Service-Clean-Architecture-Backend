@@ -14,6 +14,8 @@ class BuyProductController extends Controller
 {
     public function __invoke(BuyProductRequest $request, User $user, Product $product)
     {
+        $this->authorize('create transaction');
+
         BuyProductEvent::dispatch($user, $product);
 
         return ApiResponse::handle(

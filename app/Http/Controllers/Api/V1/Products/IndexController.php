@@ -15,6 +15,9 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
+        $this->authorize('show product');
+
+
         $products = QueryBuilder::for(Product::class)
             ->defaultSort('-id')
             ->paginate();

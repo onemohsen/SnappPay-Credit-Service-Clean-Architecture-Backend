@@ -14,6 +14,8 @@ class ShowController extends Controller
 {
     public function __invoke(Product $product)
     {
+        $this->authorize('show product');
+
         return ApiResponse::handle(
             data: ProductResource::make($product),
             message: __('messages.crud.read.success', ['label' => __('models.product')]),

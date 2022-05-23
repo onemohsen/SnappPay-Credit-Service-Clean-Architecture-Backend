@@ -15,6 +15,8 @@ class ShowController extends Controller
 
     public function __invoke(User $user)
     {
+        $this->authorize('show user');
+
         return ApiResponse::handle(
             data: UserResource::make($user),
             message: __('messages.crud.read.success', ['label' => __('models.user')]),

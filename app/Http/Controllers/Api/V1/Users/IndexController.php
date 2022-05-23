@@ -15,6 +15,8 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
+        $this->authorize('show user');
+
         $users = QueryBuilder::for(User::class)
             ->defaultSort('-id')
             ->paginate();

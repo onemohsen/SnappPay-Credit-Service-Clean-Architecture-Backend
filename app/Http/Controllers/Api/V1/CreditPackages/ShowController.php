@@ -14,6 +14,8 @@ class ShowController extends Controller
 {
     public function __invoke(CreditPackage $creditPackage)
     {
+        $this->authorize('show credit-package');
+
         return ApiResponse::handle(
             data: CreditPackageResource::make($creditPackage),
             message: __('messages.crud.read.success', ['label' => __('models.creditPackage')]),

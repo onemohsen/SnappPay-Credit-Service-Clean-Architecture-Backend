@@ -17,6 +17,8 @@ class UpdateController extends Controller
 {
     public function __invoke(UpdateRequest $request, CreditPackage $creditPackage)
     {
+        $this->authorize('edit credit-package');
+
         $creditPackageValueObject = CreditPackageFactory::create($request->validated());
         $creditPackage = UpdateCreditPackage::handle($creditPackage, $creditPackageValueObject);
 

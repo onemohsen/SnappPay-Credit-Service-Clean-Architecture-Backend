@@ -14,6 +14,8 @@ class CreditPackageActivationController extends Controller
 {
     public function __invoke(CreditPackageActivationRequest $request, User $user, CreditPackage $creditPackage)
     {
+        $this->authorize('create transaction');
+
         CreditPackageActivationEvent::dispatch($user, $creditPackage);
 
         return ApiResponse::handle(

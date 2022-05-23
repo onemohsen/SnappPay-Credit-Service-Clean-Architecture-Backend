@@ -14,6 +14,9 @@ class DeleteController extends Controller
 {
     public function __invoke(CreditPackage $creditPackage)
     {
+        $this->authorize('delete credit-package');
+
+
         DeleteCreditPackage::handle($creditPackage);
 
         return ApiResponse::handle(
