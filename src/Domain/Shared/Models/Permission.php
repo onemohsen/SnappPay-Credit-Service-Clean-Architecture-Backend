@@ -12,4 +12,11 @@ use Spatie\Permission\Models\Permission as SpatiePermission;
 class Permission extends SpatiePermission
 {
     use HasFactory, SoftDeletes;
+
+
+    /** @return SomeFancyFactory */
+    protected static function newFactory()
+    {
+        return \Database\Factories\ProductFactory::new();
+    }
 }

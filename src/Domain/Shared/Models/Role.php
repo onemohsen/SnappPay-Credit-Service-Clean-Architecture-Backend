@@ -12,4 +12,11 @@ use Spatie\Permission\Models\Role as SpatieRole;
 class Role extends SpatieRole
 {
     use HasFactory, SoftDeletes;
+
+
+    /** @return SomeFancyFactory */
+    protected static function newFactory()
+    {
+        return \Database\Factories\RoleFactory::new();
+    }
 }
