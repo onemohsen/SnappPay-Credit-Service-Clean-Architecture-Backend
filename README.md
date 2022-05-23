@@ -2,6 +2,10 @@
 
 A brief description of what this project does and who it's for
 
+
+![alt text](https://raw.githubusercontent.com/onemohsen/SnappPay-Credit-Service-Clean-Architecture-Backend/develop/SnappPay-Diagram.jpg)
+
+
 ## Installation
 
 Install project with composer
