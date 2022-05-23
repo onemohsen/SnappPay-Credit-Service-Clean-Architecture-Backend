@@ -48,4 +48,10 @@ class Transaction extends Model
     {
         return new TransactionBuilder(query: $query);
     }
+
+    /** @return SomeFancyFactory */
+    protected static function newFactory()
+    {
+        return \Database\Factories\TransactionFactory::new();
+    }
 }
