@@ -2,9 +2,7 @@
 
 A brief description of what this project does and who it's for
 
-
 ![alt text](https://raw.githubusercontent.com/onemohsen/SnappPay-Credit-Service-Clean-Architecture-Backend/develop/SnappPay-Diagram.jpg)
-
 
 ## Installation
 
@@ -60,6 +58,7 @@ git clone https://github.com/onemohsen/SnappPay-Credit-Service-Clean-Architectur
 mv SnappPay-Credit-Service-Clean-Architecture-Frontend frontend
 mv SnappPay-Credit-Service-Clean-Architecture-Document document
 mv SnappPay-Credit-Service-Clean-Architecture-Backend backend
+cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 cp backend/.env .
 cp backend/docker-compose.yml .
