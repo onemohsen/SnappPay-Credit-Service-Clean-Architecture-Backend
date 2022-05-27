@@ -47,6 +47,37 @@ User:
   password: user
 ```
 
+#### Dockerize
+
+```bash
+# run command
+
+mkdir snapp
+cd snapp
+git clone https://github.com/onemohsen/SnappPay-Credit-Service-Clean-Architecture-Backend.git
+git clone https://github.com/onemohsen/SnappPay-Credit-Service-Clean-Architecture-Frontend.git
+git clone https://github.com/onemohsen/SnappPay-Credit-Service-Clean-Architecture-Document.git
+mv SnappPay-Credit-Service-Clean-Architecture-Frontend frontend
+mv SnappPay-Credit-Service-Clean-Architecture-Document document
+mv SnappPay-Credit-Service-Clean-Architecture-Backend backend
+cp backend/.env.example backend/.env
+cp backend/.env .
+cp backend/docker-compose.yml .
+docker-compose build .
+docker-compose up
+docker-compose exec backend php artisan migrate:fresh --seed
+docker-compose exec backend ./vendor/bin/pest
+
+# end command
+
+backend: localhost:8080
+frontend: localhost:3000
+document: localhost:30001
+
+
+
+```
+
 ## FAQ
 
 #### What language/framework is project written in?
@@ -54,4 +85,5 @@ User:
 ```bash
 Backend PHP/Laravel
 FrontEnd Vue 3
+Document Swagger
 ```
