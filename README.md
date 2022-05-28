@@ -62,9 +62,10 @@ cp frontend/.env.example frontend/.env
 cp backend/.env.example backend/.env
 cp backend/.env .
 cp backend/docker-compose.yml .
-docker-compose build .
+docker-compose build
 docker-compose up
 docker-compose exec backend php artisan migrate:fresh --seed
+docker-compose exec backend php artisan optimize:clear
 docker-compose exec backend ./vendor/bin/pest
 
 # end command
